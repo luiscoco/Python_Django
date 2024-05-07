@@ -225,9 +225,9 @@ def hello_world(request):
 
 ### 6.4. Create Templates
 
-Create a directory called templates in your **myapp** directory, and inside that, create a file called **hello.html**
+Create a directory called templates in your **myapp** directory, and inside that, create a file called **templates/hello.html**
 
-Add the following HTML code to **hello.html**:
+Add the following HTML code to **templates/hello.html**:
 
 ```html
 <!DOCTYPE html>
@@ -255,7 +255,7 @@ Add the following HTML code to **hello.html**:
 
 This template displays a form and lists all messages saved in the database
 
-![image](https://github.com/luiscoco/Python_Django/assets/32194879/efed5ed2-fb57-46b2-9eb3-06e78c37fa27)
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/3116a1ae-7413-43e3-ad7c-8dea491cf6b0)
 
 ### 6.5. Update the Project URLs
 
