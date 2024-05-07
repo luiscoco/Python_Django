@@ -100,15 +100,36 @@ urlpatterns = [
 
 ## 5. Run Your Development Server
 
+**Applying Migrations**
+
+**Migrations** are Django's way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema. Here’s how you can apply migrations:
+
+In your terminal where you are running the server, stop the server by pressing CTRL+C
+
+Run the following command to apply the migrations:
+
+```
+python manage.py migrate
+```
+
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/d05da70d-27e3-49f0-81bf-735641df18cf)
+
+This command applies all the default migrations necessary for Django's built-in apps to function, such as the admin, auth, and sessions apps
+
+It creates the necessary database tables for them
+
 Run the server again with:
 
 ```
 python manage.py runserver
 ```
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/e52baf39-6393-4c40-a8da-c37c27036bb5)
+
 Now, you should be able to visit **http://127.0.0.1:8000/hello/** and see **"Hello, world!"** displayed
 
 This approach organizes your project into discrete apps, making it more maintainable as it grows
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/e05362b6-9e33-4cda-93f3-0e947a4eb455)
 
 
