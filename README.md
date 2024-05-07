@@ -59,15 +59,19 @@ def hello_world(request):
     return HttpResponse("Hello, world!")
 ```
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/8b826bda-01f6-4503-9711-e6abf03a7816)
+
 ## 4. Map the View to a URL
 
-For the new view to be accessible by visiting a URL, you need to create a URL pattern for it:
+For the new view to be accessible by visiting a URL, you need to create a URL pattern for it
 
 First, ensure that your app knows about its own URLs
 
-Create a file called urls.py inside your myapp directory if it's not already there
+Create a file called **urls.py** inside your **myapp** directory if it's not already there
 
-In myapp/urls.py, write the following code:
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/d00be9d1-8468-4b19-9d83-93821b48b9c1)
+
+In **myapp/urls.py**, write the following code:
 
 ```python
 from django.urls import path
@@ -92,6 +96,8 @@ urlpatterns = [
 ]
 ```
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/61473497-a68a-4b2c-b2d0-c2fdcd09f386)
+
 ## 5. Run Your Development Server
 
 Run the server again with:
@@ -103,4 +109,6 @@ python manage.py runserver
 Now, you should be able to visit **http://127.0.0.1:8000/hello/** and see **"Hello, world!"** displayed
 
 This approach organizes your project into discrete apps, making it more maintainable as it grows
+
+
 
