@@ -24,61 +24,79 @@ django-admin startproject myproject
 
 This command creates a new directory called **myproject** with the basic structure of a Django project
 
-## 2. Running the Development Server
+## 2. Create an App
 
-Navigate to your project directory and run the following command to start the development server:
+In Django, an app is a web application that does something – e.g., a weblog, a database of public records, or a small poll app
+
+Each app is supposed to have a single, focused purpose and can be reused in different projects if needed
+
+In your terminal, navigate to your project directory where **manage.py** is located
+
+Create a new app by running:
 
 ```
-cd myproject
-python manage.py runserver
+python manage.py startapp myapp
 ```
-You should see output indicating that the server is running, and you can visit **http://127.0.0.1:8000/** in your browser to see the default Django welcome page
 
-## 3. Creating a Simple View
+This command will create a new directory called myapp inside your project directory
 
-Let’s create a simple view to return a response
+This directory will include several files, one of which will be **views.py**
 
-First, open the **views.py** file in the myproject directory under the myproject application
+## 3. Create a View in views.py
 
-You might need to create it if it's not there. Add the following Python code:
+Open the **views.py** file in the myapp directory
+
+Add the following simple view:
 
 ```python
 from django.http import HttpResponse
 
-def home(request):
-    return HttpResponse("Hello, Django!")
+def hello_world(request):
+    return HttpResponse("Hello, world!")
 ```
 
-## 4. Mapping the View to a URL
+## 4. Map the View to a URL
 
-To make your view accessible through a URL, you'll need to edit the **urls.py** file in the same directory
+For the new view to be accessible by visiting a URL, you need to create a URL pattern for it:
 
-Add your view to the URL pattern by modifying the urlpatterns list:
+First, ensure that your app knows about its own URLs
+
+Create a file called urls.py inside your myapp directory if it's not already there
+
+In myapp/urls.py, write the following code:
 
 ```python
 from django.urls import path
-from .views import home  # make sure this import statement is at the top
+from . import views
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('', views.hello_world, name='hello'),
 ]
 ```
 
-Now, when you run your server again and navigate to **http://127.0.0.1:8000/**, you should see **"Hello, Django!"** displayed in your browser.
+Now, include the myapp URLs in your project's main URL configuration in **myproject/urls.py**
 
-## 5. Setting Up VSCode for Django Development
+Modify it to include your app’s URL configurations:
 
-To make your development experience better in VSCode, you can install the **Python extension by Microsoft**
+```python
+from django.contrib import admin
+from django.urls import include, path
 
-It provides rich support for Python and Django, including features like IntelliSense, linting, and debugging. Here’s how to set it up:
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello/', include('myapp.urls')),
+]
+```
 
-Open VSCode
+## 5. Run Your Development Server
 
-Go to the Extensions view by clicking on the square icon in the sidebar or pressing Ctrl+Shift+X
+Run the server again with:
 
-Search for "Python" and install the extension provided by Microsoft
+```
+python manage.py runserver
+```
 
-This setup should help you start with Django development in VSCode
+Now, you should be able to visit **http://127.0.0.1:8000/hello/** and see **"Hello, world!"** displayed
 
-Enjoy coding with Django! If you have more specific requirements or need further examples, feel free to ask
+This approach organizes your project into discrete apps, making it more maintainable as it grows
 
