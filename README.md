@@ -132,4 +132,143 @@ This approach organizes your project into discrete apps, making it more maintain
 
 ![image](https://github.com/luiscoco/Python_Django/assets/32194879/e05362b6-9e33-4cda-93f3-0e947a4eb455)
 
+## 6. How to add more features to my first django application
+
+Let’s expand your first Django application by adding more features
+
+We can include a model to store data, create a form to submit data, and build templates to display web pages. Here's a guide to add these elements:
+
+### 6.1. Define a Model
+
+Models in Django are Python classes that define the structure of an application’s data
+
+Let’s create a simple model to store messages
+
+Open **models.py** in your myapp directory
+
+Add the following model definition:
+
+```python
+from django.db import models
+
+class Message(models.Model):
+    text = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message(id={self.id}, text={self.text})"
+```
+
+After defining the model, you need to create a migration file for these changes and then migrate to apply them to your database. Run these commands:
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### 6.2. Create a Form
+
+Forms in Django handle the rendering of HTML forms and the extraction of data from submitted forms
+
+Let’s create a form for the Message model
+
+Create a file **forms.py** in the myapp directory
+
+Add the following code to forms.py:
+
+```python
+from django import forms
+from .models import Message
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['text']
+```
+
+### 6.3. Update Views
+
+Let’s update the views to handle showing a form and saving data from it
+
+Open **views.py** in the myapp directory
+
+Add the following code:
+
+```python
+from django.shortcuts import render, redirect
+from .forms import MessageForm
+from .models import Message
+
+def hello_world(request):
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('hello')
+    else:
+        form = MessageForm()
+    messages = Message.objects.all().order_by('-created_at')
+    return render(request, 'hello.html', {'form': form, 'messages': messages})
+```
+
+### 6.4. Create Templates
+
+Create a directory called templates in your myapp directory, and inside that, create a file called **hello.html**
+
+Add the following HTML code to **hello.html**:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+<body>
+    <h1>Hello, world!</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+    <ul>
+        {% for message in messages %}
+        <li>{{ message.text }} ({{ message.created_at }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+```
+
+This template displays a form and lists all messages saved in the database
+
+### 6.5. Update the Project URLs
+
+Make sure your project’s **urls.py** is set to find the templates by updating the settings:
+
+In **settings.py**, make sure you have the following:
+
+```python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'myapp/templates'],
+        'APP_DIRS': True,
+        ...
+    },
+]
+```
+
+Now, your application can handle data input through a form and display stored data
+
+Run your server to see these features in action:
+
+```
+python manage.py runserver
+```
+
+Navigate to **http://127.0.0.1:8000/hello/** to see the form and list of messages
+
+This setup demonstrates a basic CRUD (Create, Read, Update, Delete) operation in Django, tailored to creating and reading operations
 
