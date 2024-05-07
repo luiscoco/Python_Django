@@ -138,6 +138,8 @@ Let’s expand your first Django application by adding more features
 
 We can include a model to store data, create a form to submit data, and build templates to display web pages. Here's a guide to add these elements:
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/222e26ac-df41-4c6e-8b99-17e7f88dfa00)
+
 ### 6.1. Define a Model
 
 Models in Django are Python classes that define the structure of an application’s data
@@ -159,12 +161,18 @@ class Message(models.Model):
         return f"Message(id={self.id}, text={self.text})"
 ```
 
-After defining the model, you need to create a migration file for these changes and then migrate to apply them to your database. Run these commands:
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/32517554-da3d-4266-963e-540cc899cebb)
+
+After defining the model, you need to **create a migration file** for these changes and then migrate to apply them to your database
+
+Run these commands:
 
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
+
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/35e0b3d9-0f14-49f6-9788-be6e2b4b4a80)
 
 ### 6.2. Create a Form
 
@@ -172,7 +180,7 @@ Forms in Django handle the rendering of HTML forms and the extraction of data fr
 
 Let’s create a form for the Message model
 
-Create a file **forms.py** in the myapp directory
+Create a file **forms.py** in the **myapp** directory
 
 Add the following code to forms.py:
 
@@ -186,11 +194,13 @@ class MessageForm(forms.ModelForm):
         fields = ['text']
 ```
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/ba0fa7ae-3e8e-4827-ba36-b4ba0323bab2)
+
 ### 6.3. Update Views
 
 Let’s update the views to handle showing a form and saving data from it
 
-Open **views.py** in the myapp directory
+Open **views.py** in the **myapp** directory
 
 Add the following code:
 
@@ -211,9 +221,11 @@ def hello_world(request):
     return render(request, 'hello.html', {'form': form, 'messages': messages})
 ```
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/a24fd658-32f4-4f91-a479-606721318f7d)
+
 ### 6.4. Create Templates
 
-Create a directory called templates in your myapp directory, and inside that, create a file called **hello.html**
+Create a directory called templates in your **myapp** directory, and inside that, create a file called **hello.html**
 
 Add the following HTML code to **hello.html**:
 
@@ -242,6 +254,8 @@ Add the following HTML code to **hello.html**:
 ```
 
 This template displays a form and lists all messages saved in the database
+
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/efed5ed2-fb57-46b2-9eb3-06e78c37fa27)
 
 ### 6.5. Update the Project URLs
 
@@ -272,3 +286,6 @@ Navigate to **http://127.0.0.1:8000/hello/** to see the form and list of message
 
 This setup demonstrates a basic CRUD (Create, Read, Update, Delete) operation in Django, tailored to creating and reading operations
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/99122b1e-3270-43fb-ab90-0480f3b35540)
+
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/a37a5732-3e45-4575-8c23-ed48d3715700)
