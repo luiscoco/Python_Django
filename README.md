@@ -24,6 +24,8 @@ django-admin startproject myproject
 
 This command creates a new directory called **myproject** with the basic structure of a Django project
 
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/6dcf992d-517a-4d6f-bf91-342f082b1c81)
+
 ## 2. Create an App
 
 In Django, an app is a web application that does something – e.g., a weblog, a database of public records, or a small poll app
@@ -38,9 +40,11 @@ Create a new app by running:
 python manage.py startapp myapp
 ```
 
-This command will create a new directory called myapp inside your project directory
+This command will create a new directory called **myapp** inside your project directory
 
 This directory will include several files, one of which will be **views.py**
+
+![image](https://github.com/luiscoco/Python_Django/assets/32194879/93ae0cb7-50f5-4017-be5e-7edc0fa4e2d6)
 
 ## 3. Create a View in views.py
 
