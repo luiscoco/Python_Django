@@ -1,5 +1,7 @@
 # Python a brief introduction to Django
 
+https://www.djangoproject.com/
+
 **Django** is a powerful **web framework** for **Python**, ideal for building **web applications** quickly and efficiently
 
 Below, I'll provide you with a couple of simple Django code samples that you can try out in Visual Studio Code (VSCode)
